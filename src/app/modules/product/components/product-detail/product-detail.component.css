@@ -1,0 +1,35 @@
+.tarjeta {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.modal-personalizado {
+  background-color: #fff7;
+  color: #000c;
+}
+
+.botones {
+  margin: 15px;
+  color: white;
+}
+
+.formulario {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+form input {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.cards-img {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.card-img {
+  margin-right: 10px;
+}

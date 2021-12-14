@@ -1,0 +1,120 @@
+<div class="container-fluid tarjeta">
+    <div class="card text-center card text-white bg-dark">
+        <!-- Header -->
+        <div class="card-header">
+            <h1><i class="fas fa-gift"></i>&nbsp;&nbsp;&nbsp;Productos</h1>
+            <button (click)="createProduct()" type="button" class="btn btn-success boton-crea">
+                Agregar Producto&nbsp;
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+        <!-- Body -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th class="text-center">GTIN</th>
+                            <th class="text-center">Producto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of products">
+                            <td class="text-center">{{product.gtin}}</td>
+                            <td class="text-center">{{product.product}}</td>
+                            <td>
+                                <button (click)="productDetail(product.gtin)"type="button" class="btn btn-info botones">
+                                    Ver detalles&nbsp;
+                                    <i class="fas fa-id-card"></i>
+                                </button>
+                                <button (click)="deleteProduct(product.id_product)"type="button" class="btn btn-danger botones">
+                                    Eliminar&nbsp;
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="product_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered text-center" role="document">
+        <div class="modal-content modal-personalizado">
+            <!-- Header -->
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Agregar Producto</h5>
+                </div>
+                <button (click)="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Body -->
+            <div class="modal-body">
+                <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="product">Ingresa el código GTIN <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control formulario" id="product" formControlName="gtin" placeholder="Código GTIN...">
+                        <div *ngIf="submitted && f.gtin.errors">
+                            <div *ngIf="f.gtin.errors.required">
+                                <span class="text-danger">* El código GTIN es obligatorio</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="product">Ingresa nombre de producto <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control formulario" id="product" formControlName="product" placeholder="Nombre de producto...">
+                        <div *ngIf="submitted && f.product.errors">
+                            <div *ngIf="f.product.errors.required">
+                                <span class="text-danger">* Nombre de producto es obligatorio </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="product">Ingresa descripción de producto</label>
+                        <textarea rows="2" type="text" class="form-control formulario" id="description" formControlName="description" placeholder="Descripción..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="product">Ingresa el precio <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control formulario" id="price" formControlName="price" placeholder="Precio...">
+                        <div *ngIf="submitted && f.price.errors">
+                            <div *ngIf="f.price.errors.required">
+                                <span class="text-danger">* El precio es obligatorio</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="product">Ingresa cantidad de artículos en stock <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control formulario" id="stock" formControlName="stock" placeholder="Cantidad...">
+                        <div *ngIf="submitted && f.stock.errors">
+                            <div *ngIf="f.stock.errors.required">
+                                <span class="text-danger">* Cantidad de artículos en stock es obligatorio</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="product">Selecciona categoría del producto <span class="text-danger">*</span></label>
+                        <select class="form-control formulario" id="id_category" formControlName="id_category">
+                            <option value="0" disabled>Selecciona una categoría...</option>
+                            <option *ngFor="let category of categories" [ngValue]="category.id_category">{{category.category}}</option>
+                        </select>   
+                        <div *ngIf="submitted && f.id_category.errors">
+                            <div *ngIf="f.id_category.errors.required">
+                                <span class="text-danger">* La categoría es obligatoria</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button [disabled]="submitted" type="submit" class="btn btn-info formulario" style="width: 30%; color: #000C;">Registrar</button>
+                </form>
+            </div>
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button (click)="closeModal()" type="button" class="btn btn-secondary" style="color: #000C;" data-dismiss="modal">Cancelar </button>
+            </div>
+        </div>
+    </div>
+</div>

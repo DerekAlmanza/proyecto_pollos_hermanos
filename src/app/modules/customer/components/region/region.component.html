@@ -1,0 +1,82 @@
+<div class="container-fluid tarjeta">
+    <div class="card text-center card text-white bg-dark">
+        <!-- Header -->
+        <div class="card-header">
+            <h1><i class="fas fa-map-marked-alt"></i>&nbsp;&nbsp;&nbsp;Regiones</h1>
+            <button (click)="createRegion()" type="button" class="btn btn-success boton-crea">
+                Crear región&nbsp;
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+        <!-- Body -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Región</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let region of regions">
+                            <td class="text-center">{{region.region}}</td>
+                            <td>
+                                <button (click)="deleteRegion(region.id_region)"type="button" class="btn btn-danger botones">
+                                    Eliminar&nbsp;
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button (click)="updateRegion(region)"type="button" class="btn btn-info botones">
+                                    Actualizar&nbsp;
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button (click)="refreshRegions()" class="btn btn-info refresh"><i class="fas fa-sync-alt"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="regionModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered text-center" role="document">
+        <div class="modal-content modal-personalizado">
+            <!-- Header -->
+            <div class="modal-header">
+                <div *ngIf="postRegion; else elseBlock">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Registrar Región</h5>
+                </div>
+                <ng-template #elseBlock>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Región</h5>
+                </ng-template>
+                <button (click)="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Body -->
+            <div class="modal-body">
+                <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="region">Ingresa el nombre de la región <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control formulario" id="region" formControlName="region" placeholder="Nombre de región...">
+                        <div *ngIf="submitted && f.region.errors">
+                            <div *ngIf="f.region.errors.required">
+                                <span class="text-danger">* El nombre de la región es obligatorio</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button *ngIf="postRegion; else elseBlock2" [disabled]="submitted" type="submit" class="btn btn-info formulario" style="width: 30%; color: #000C;">Registrar</button>
+                    <ng-template #elseBlock2>
+                        <button type="submit" [disabled]="submitted" class="btn btn-info formulario" style="width: 30%; color: #000C;">Actualizar</button>
+                    </ng-template>
+                </form>
+            </div>
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button (click)="closeModal()" type="button" class="btn btn-secondary" style="color: #000C;" data-dismiss="modal">Cancelar </button>
+            </div>
+        </div>
+    </div>
+</div>

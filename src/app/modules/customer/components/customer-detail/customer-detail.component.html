@@ -1,0 +1,204 @@
+<div class="container-fluid tarjeta">
+    <div class="card text-center text-white bg-dark">
+        <!-- Header -->
+        <div class="card-header">
+            <table class="table" style="width: 100%;">
+                <tbody>
+                    <tr>
+                        <th style="width: 100px;">
+                            <img src="{{customer.image}}" width="125" height="150">
+                            <button (click)="updateCustomerImage()" type="button" class="btn btn-link btn-sm">Cambiar foto de perfil</button>
+                        </th>
+                        <td class="text-white nombre-perfil">
+                            <h2>
+                                {{customer.name}}
+                            </h2>
+                            <h2>
+                                {{customer.surname}}
+                            </h2>
+                            <button (click)="updateCustomer(customer)" type="button" class="btn btn-info botones">
+                                Actualizar datos <i class="fas fa-user-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Body -->
+        <div class="card-body">
+            <table class="table table-dark" style="width: 100%;">
+                <tbody class="text-white">
+                    <tr>
+                        <th>RFC</th>
+                        <td>{{customer.rfc}}</td>
+                    </tr>
+                    <tr>
+                        <th>Mail</th>
+                        <td>{{customer.mail}}</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>{{customer.address}}</td>
+                    </tr>
+                    <tr>
+                        <th>Region</th>
+                        <td>
+                            {{region.region}}
+                            <br>
+                            <button (click)="updateCustomerRegion()" type="button" class="btn btn-link btn-sm">Actualizar región</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Customer Modal -->
+<div class="modal fade" id="customer_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered text-center" role="document">
+        <div class="modal-content modal-personalizado">
+            <!-- Header -->
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Cliente</h5>
+                </div>
+                <button (click)="closeCustomerModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Body -->
+            <div class="modal-body">
+                <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="customer">Ingresa nombre <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control formulario" id="name" formControlName="name" placeholder="Nombre de cliente...">
+                        <div *ngIf="submitted && f.name.errors">
+                            <div *ngIf="f.name.errors.required">
+                                <span class="text-danger">* El nombre del cliente es obligatorio</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer">Ingresa apellido(s) <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control formulario" id="surname" formControlName="surname" placeholder="Apellido(s) del cliente...">
+                        <div *ngIf="submitted && f.surname.errors">
+                            <div *ngIf="f.surname.errors.required">
+                                <span class="text-danger">* Se requiere mínimo un apellido </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer">Ingresa mail <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control formulario" id="mail" formControlName="mail" placeholder="Mail del cliente...">
+                        <div *ngIf="submitted && f.mail.errors">
+                            <div *ngIf="f.mail.errors.required">
+                                <span class="text-danger">* El mail es obligatorio</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer">Ingresa el RFC <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control formulario" id="rfc" formControlName="rfc" placeholder="RFC del cliente...">
+                        <div *ngIf="submitted && f.rfc.errors">
+                            <div *ngIf="f.rfc.errors.required">
+                                <span class="text-danger">* El RFC es obligatorio</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer">Ingresa dirección <span class="text-danger">*</span></label>
+                        <textarea rows="2" type="text" class="form-control formulario" id="address" formControlName="address" placeholder="Dirección del cliente"></textarea>
+                        <div *ngIf="submitted && f.address.errors">
+                            <div *ngIf="f.address.errors.required">
+                                <span class="text-danger">* La dirección es obligatoria</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button [disabled]="submitted" type="submit" class="btn btn-info formulario" style="width: 30%; color: #000C;">Actualizar</button>
+                </form>
+            </div>
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button (click)="closeCustomerModal()" type="button" class="btn btn-secondary" style="color: #000C;" data-dismiss="modal">Cancelar </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal región -->
+<div class="modal fade" id="region_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered text-center" role="document">
+        <div class="modal-content modal-personalizado">
+            <!-- Header -->
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Actualizar región</h5>
+                </div>
+                <button (click)="closeRegionModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Body -->
+            <div class="modal-body">
+                <form [formGroup]="formularioRegion" (ngSubmit)="onSubmitRegion()">
+                    <div class="form-group">
+                        <label for="region">Ingresa región <span class="text-danger">*</span></label>
+                        <select class="form-control formulario" id="id_region" formControlName="id_region">
+                            <option value="0" disabled>Selecciona una región...</option>
+                            <option *ngFor="let region of regions" [ngValue]="region.id_region">{{region.region}}</option>
+                        </select>   
+                        <div *ngIf="submitted && f.id_region.errors">
+                            <div *ngIf="f.id_region.errors.required">
+                                <span class="text-danger">* La región es obligatoria</span>
+                            </div>
+                        </div>
+                        <button [disabled]="submitted" type="submit" class="btn btn-info formulario" style="width: 30%; color: #000C;">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button (click)="closeRegionModal()" type="button" class="btn btn-secondary" style="color: #000C;" data-dismiss="modal">Cancelar </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Image Modal -->
+<div class="modal fade" id="image_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered text-center" role="document">
+        <div class="modal-content modal-personalizado">
+            <!-- Header -->
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Imagen</h5>
+                </div>
+                <button (click)="closeImageModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Body -->
+            <div class="modal-body">
+                <label for="image">Imagen</label><span class="text-danger">*</span>
+                <div class="custom-file form-group">
+                    <input type="file" accept="image/*" class="custom-file-input" (change)="fileChangeEvent($event)">
+                    <ngx-photo-editor
+                        [imageChanedEvent]="imageChangedEvent"
+                        (imageCropped)="imageCropped($event)"
+                        [aspectRatio]="5/6"
+                        [viewMode]="0"
+                        [resizeToWidth]="250">
+                    </ngx-photo-editor>
+                </div>
+                <button [disabled]="submitted" (click)="onSubmitImage()" class="btn btn-info formulario" style="width: 30%; color: #000C;">Actualizar</button>
+            </div>
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button (click)="closeImageModal()" type="button" class="btn btn-secondary" style="color: #000C;" data-dismiss="modal">Cancelar </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
