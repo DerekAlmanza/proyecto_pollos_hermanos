@@ -52,6 +52,20 @@
                 <button (click)="uploadProductImage()" type="button" class="btn btn-info botones">
                     Agregar imagen <i class="fas fa-edit"></i>
                 </button>
+                <form [formGroup]="formularioCart" (ngSubmit)="onSubmitCart()">
+                    <div class="form-group">
+                        <label for="region">Selecciona la cantidad</label>
+                        <input type="number"
+                            min="1"
+                            [max]="product.stock"
+                            class="form-control formulario"
+                            id="quantity"
+                            formControlName="quantity">
+                    </div>
+                    <div class="form-group">
+                        <button [disabled]="submitted" type="submit" class="btn btn-info formulario" style="width: 30%; color: #000C;">Agregar al carrito</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -157,7 +171,7 @@
                         <label for="region">Selecciona la categoría a la que pertenece el producto <span class="text-danger">*</span></label>
                         <select class="form-control formulario" id="id_category" formControlName="id_category">
                             <option *ngFor="let category of categories" [ngValue]="category.id_category">{{category.category}}</option>
-                        </select>   
+                        </select>
                         
                         <button [disabled]="submitted" type="submit" class="btn btn-info formulario" style="width: 30%; color: #000C;">Actualizar</button>
                     </div>
