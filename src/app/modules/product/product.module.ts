@@ -5,12 +5,14 @@ import { CategoryComponent } from './components/category/category.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { NgxPhotoEditorModule } from 'ngx-photo-editor';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
     CategoryComponent,
     ProductComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { NgxPhotoEditorModule } from 'ngx-photo-editor';
   exports: [
     CategoryComponent,
     ProductComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    CartComponent
   ]
 })
 export class ProductModule { }

@@ -195,6 +195,7 @@ export class ProductDetailComponent implements OnInit {
               timer: 2000
             });
             this.submitted = false;
+            this.formularioCart.controls['quantity'].setValue(1);
           },
           error => {
             console.error(error);
