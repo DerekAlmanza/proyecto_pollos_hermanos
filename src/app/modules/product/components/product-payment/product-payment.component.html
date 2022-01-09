@@ -1,0 +1,83 @@
+<div class="container-fluid tarjeta">
+    <div class="card text-center card text-white bg-dark">
+        <!-- Header -->
+        <div class="card-header">
+            <h1><i class="fas fa-user-alt"></i>&nbsp;&nbsp;&nbsp;Información de la Tarjeta</h1>
+        </div>
+        <!-- Body -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--
+                        <tr *ngFor="let customer of customers">
+                            <td class="text-center">{{customer.name}} {{customer.surname}}</td>
+                            <td class="text-center">{{customer.rfc}}</td>
+                            <td>
+                                <button (click)="customerDetail(customer.rfc)"type="button" class="btn btn-info botones">
+                                    Ver detalles&nbsp;
+                                    <i class="fas fa-id-card"></i>
+                                </button>
+                                <button (click)="deleteCustomer(customer.id_customer)"type="button" class="btn btn-danger botones">
+                                    Eliminar&nbsp;
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        -->
+                    </tbody>
+                </table>
+            </div>
+            <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="customer">Propietario de la Tarjeta <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control formulario" id="name" formControlName="name" placeholder="Nombre de cliente...">
+                    <div *ngIf="submitted && f.name.errors">
+                        <div *ngIf="f.name.errors.required">
+                            <span class="text-danger">* El nombre del cliente es obligatorio</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="customer">Numero de la Tarjeta <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control formulario" id="cr_num" formControlName="card_number" placeholder="0000 0000 0000 000" size="16" minlength="16" maxlength="16">
+                    <div *ngIf="submitted && f.card_number.errors">
+                        <div *ngIf="f.card_number.errors.required">
+                            <span class="text-danger">* Se requiere el número de la tarjeta </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="customer">Fecha de Expiración<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control formulario" id="expiration" formControlName="fecha_expiracion" placeholder="MMYY" size="4" minlength="4" maxlength="4">
+                    <div *ngIf="submitted && f.fecha_expiracion.errors">
+                        <div *ngIf="f.fecha_expiracion.errors.required">
+                            <span class="text-danger">* La fecha es obligatoria</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="customer">CVV/CVC <span class="text-danger">*</span></label>
+                    <input type="password" class="form-control formulario" formControlName="cvv_cvc" placeholder="000" size="3" minlength="3" maxlength="3">
+                    <div *ngIf="submitted && f.cvv_cvc.errors">
+                        <div *ngIf="f.cvv_cvc.errors.required">
+                            <span class="text-danger">* El CVV/CVC es obligatorio</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer falso -->
+                <div class=" text-sm-center justify-content-center pt-4 pb-4"> <p class="text text-center">Cliente: "RFC"</p>
+                    <h5 class="mb-5">12345678</h5> <p class="text">Monto Total</p>
+                    <div class=" px-3 justify-content-sm-center">
+                        <h2 class=""><span class="text font-weight-bold mr-2">$</span><span class="text-danger">59.49</span></h2>
+                    </div> <button [disabled]="submitted" type="submit" class="btn btn-red text-center mt-4">PAGAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
