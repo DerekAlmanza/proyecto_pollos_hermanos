@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HomeComponent } from './home/home.component';
+import { NgxPhotoEditorModule } from 'ngx-photo-editor';
+import { ShowProductsComponent } from './components/show-products/show-products.component';
 
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    ShowProductsComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPhotoEditorModule
   ]
 })
 export class HomeModule { }

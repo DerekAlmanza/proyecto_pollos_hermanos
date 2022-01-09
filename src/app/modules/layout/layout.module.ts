@@ -7,7 +7,7 @@ import { FooterComponent } from './components/footer/footer.component'
 import { RegionComponent } from './../customer/components/region/region.component';
 import { ExchangeRateComponent } from './../exchange-rate/components/exchange-rate/exchange-rate.component';
 import { CategoryComponent } from './../product/components/category/category.component';
-import { HomeComponent } from './../home/home/home.component';
+import { ShowProductsComponent } from './../home/components/show-products/show-products.component';
 import { CustomerDetailComponent } from './../customer/components/customer-detail/customer-detail.component';
 import { CustomerComponent } from './../customer/components/customer/customer.component';
 import { ProductDetailComponent } from './../product/components/product-detail/product-detail.component';
@@ -16,7 +16,7 @@ import { ProductComponent } from './../product/components/product/product.compon
 const routes: Routes = [
   {path: 'exchange-rate', component: ExchangeRateComponent},
   {path: 'region', component:RegionComponent},
-  {path: '', component: HomeComponent},
+  {path: '', component: ShowProductsComponent},
   {path: 'category', component: CategoryComponent},
   {path: 'customer', component: CustomerComponent},
   {path: 'customer-detail/:rfc', component: CustomerDetailComponent},

@@ -20,7 +20,7 @@ export class CategoryService {
   }
 
   getCategory(id_category:number) {
-    return this.httpClient.get<Category>(this.apiURI + this.resource + `/${id_category}`);
+    return this.httpClient.get<Category>(this.apiURI + this.resource + `/${id_category}}`);
   }
 
   createCategory(category:Category) {
