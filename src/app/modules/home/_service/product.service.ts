@@ -43,4 +43,8 @@ export class ProductService {
   getProductsRandom() {
     return this.httpClient.get<Product[]>(this.apiURI + `${this.resource}/random`);
   }
+
+  getProductsCategory(id_category: number) {
+    return this.httpClient.get<Product[]>(this.apiURI + `${this.resource}/category/${id_category}`)
+  }
 }

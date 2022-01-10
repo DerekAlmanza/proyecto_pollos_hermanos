@@ -1,21 +1,21 @@
 <section>
 
+    <div class="contenedor">
+        <div class="botones-practica">
+            <a routerLink="/">
+                <span>Volver al inicio</span>
+            </a>
+        </div>
+    </div>
     <div class="container">
 
-        
-        <select class="select-personalizado" (change)="showCategoryProducts($event)">
-            <option selected disabled>Todas las categorías &#x25BC;</option>
-            <option *ngFor="let category of categories" [value]="category.id_category">{{category.category}}</option>
-        </select>
-        
-            
         <div *ngFor="let product of products" class="tarjeta">
 
             <!-- Product image. Queda pendiente de desarrollo-->
             <!-- <div *ngFor="let img of images" class="card text-center bg-dark card-img" style="width: 18rem;">
                 <img class="card-img-top" src="{{img.image}}" alt="Card image cap">
             </div> -->
-
+    
             <!-- Product details-->
             <div class="card-body p-4">
                 <div class="text-center text-dark">
@@ -25,7 +25,7 @@
                     <h5>${{ product.price }}</h5>
                 </div>
             </div>
-
+    
             <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                 <div class="text-center">
