@@ -74,15 +74,15 @@ export class ProductPaymentComponent implements OnInit {
     if(suba > anio){
       console.log("devuelve 0");
       return 0;
-    }else {//if(suba < anio){ //segundo caso, el año de ingreso es menor al actual
-      console.log("devuelve 1");
-      return -1;
-    /*else if(suba == anio){//tercer caso, el año de ingreso es igual al actual
+    }else if(suba == anio){//tercer caso, el año de ingreso es igual al actual
       if(submes2 < mes){//el mes es menor al actual
         return -1;
       }else{//el mes es mayor al actual
         return 0;
-      }*/
+      }
+    }else{//if(suba < anio){ //segundo caso, el año de ingreso es menor al actual
+      console.log("devuelve 1");
+      return -1;
     }
   }
 
