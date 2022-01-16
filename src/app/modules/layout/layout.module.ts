@@ -13,6 +13,7 @@ import { CustomerComponent } from './../customer/components/customer/customer.co
 import { ProductDetailComponent } from './../product/components/product-detail/product-detail.component';
 import { ProductComponent } from './../product/components/product/product.component';
 import { ProductPaymentComponent } from '../product/components/product-payment/product-payment.component';
+import { InvoiceComponent } from '../invoice/components/invoice.component';
 
 const routes: Routes = [
   {path: 'exchange-rate', component: ExchangeRateComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'customer-detail/:rfc', component: CustomerDetailComponent},
   {path: 'product', component: ProductComponent},
   {path: 'product-detail/:gtin', component: ProductDetailComponent},
-  {path: 'product-payment', component: ProductPaymentComponent}
+  {path: 'product-payment', component: ProductPaymentComponent},
+  {path: 'invoice', component: InvoiceComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,134 @@
+<div class="container-fluid tarjeta">
+    <div class="card text-center card text-white bg-dark">
+        <!-- Header -->
+        <div class="card-header">
+            <h1><i class="fas fa-file-invoice-dollar"></i>&nbsp;&nbsp;&nbsp;Facturas</h1>
+        </div>
+        <!-- Body -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Fecha de Creación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr *ngFor="let invoice of invoices">
+                            <td class="text-center">{{invoice.created_at}}</td>
+                            <td>
+                                <button (click)="invoiceDetail('hola')"type="button" class="btn btn-info botones">
+                                    Ver detalles&nbsp;
+                                    <i class="fas fa-id-card"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!--
+                        <tr *ngFor="let customer of customers">
+                            <td class="text-center">{{customer.name}} {{customer.surname}}</td>
+                            <td class="text-center">{{customer.rfc}}</td>
+                            <td>
+                                <button (click)="customerDetail(customer.rfc)"type="button" class="btn btn-info botones">
+                                    Ver detalles&nbsp;
+                                    <i class="fas fa-id-card"></i>
+                                </button>
+                                <button (click)="deleteCustomer(customer.id_customer)"type="button" class="btn btn-danger botones">
+                                    Eliminar&nbsp;
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 
+<div class="modal fade" id="customer_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered text-center" role="document">
+        <div class="modal-content modal-personalizado">
+            <!-- Header 
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Registrar Cliente</h5>
+                </div>
+                <button (click)="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Body 
+            <div class="modal-body">
+                <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="customer">Ingresa nombre <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control formulario" id="name" formControlName="name" placeholder="Nombre de cliente...">
+                        <div *ngIf="submitted && f.name.errors">
+                            <div *ngIf="f.name.errors.required">
+                                <span class="text-danger">* El nombre del cliente es obligatorio</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer">Ingresa apellido(s) <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control formulario" id="surname" formControlName="surname" placeholder="Apellido(s) del cliente...">
+                        <div *ngIf="submitted && f.surname.errors">
+                            <div *ngIf="f.surname.errors.required">
+                                <span class="text-danger">* Se requiere mínimo un apellido </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer">Ingresa mail <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control formulario" id="mail" formControlName="mail" placeholder="Mail del cliente...">
+                        <div *ngIf="submitted && f.mail.errors">
+                            <div *ngIf="f.mail.errors.required">
+                                <span class="text-danger">* El mail es obligatorio</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer">Ingresa el RFC <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control formulario" id="rfc" formControlName="rfc" placeholder="RFC del cliente...">
+                        <div *ngIf="submitted && f.rfc.errors">
+                            <div *ngIf="f.rfc.errors.required">
+                                <span class="text-danger">* El RFC es obligatorio</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer">Ingresa dirección <span class="text-danger">*</span></label>
+                        <textarea rows="2" type="text" class="form-control formulario" id="address" formControlName="address" placeholder="Dirección del cliente"></textarea>
+                        <div *ngIf="submitted && f.address.errors">
+                            <div *ngIf="f.address.errors.required">
+                                <span class="text-danger">* La dirección es obligatoria</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer">Ingresa región <span class="text-danger">*</span></label>
+                        <select class="form-control formulario" id="id_region" formControlName="id_region">
+                            <option value="0" disabled>Selecciona una región...</option>
+                            <option *ngFor="let region of regions" [ngValue]="region.id_region">{{region.region}}</option>
+                        </select>   
+                        <div *ngIf="submitted && f.id_region.errors">
+                            <div *ngIf="f.id_region.errors.required">
+                                <span class="text-danger">* La región es obligatoria</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button [disabled]="submitted" type="submit" class="btn btn-info formulario" style="width: 30%; color: #000C;">Registrar</button>
+                </form>
+            </div>
+            <!-- Footer 
+            <div class="modal-footer">
+                <button (click)="closeModal()" type="button" class="btn btn-secondary" style="color: #000C;" data-dismiss="modal">Cancelar </button>
+            </div>
+        </div>
+    </div>
+</div>
+-->

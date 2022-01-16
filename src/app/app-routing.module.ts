@@ -9,7 +9,7 @@ const routes: Routes = [
   {path: 'exchange-rate', component: ExchangeRateComponent},
   {path: 'region', component:RegionComponent},
   {path: '', component: HomeComponent},
-  {path: 'category', component: CategoryComponent}
+  {path: 'category', component: CategoryComponent},
 ];
 
 @NgModule({

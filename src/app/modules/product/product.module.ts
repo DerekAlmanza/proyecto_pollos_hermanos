@@ -23,7 +23,8 @@ import { ProductPaymentComponent } from './components/product-payment/product-pa
   exports: [
     CategoryComponent,
     ProductComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProductPaymentComponent
   ]
 })
 export class ProductModule { }
