@@ -19,9 +19,8 @@ export class ProductPaymentComponent implements OnInit {
   })
   submitted = false;
 
+  /**Método que verifica que la fecha ingresada no sea menor a la actual **/
   estableceFecha(){
-    //Nos ayuda a verificar que la fecha ingresada no sea menor a la actual.
-    //conseguimos el mes en forma de cadena.
     let date: Date = new Date();
     let mes: number;
     let compara: string;
@@ -32,7 +31,6 @@ export class ProductPaymentComponent implements OnInit {
       mes = date.getUTCMonth()+1;
       compara = mes.toString();
     }
-    console.log("mes actual en tipo numerico " + mes);
     //conseguimos el año en forma de cadena
     var anio: number;
     anio = date.getFullYear();
@@ -41,48 +39,38 @@ export class ProductPaymentComponent implements OnInit {
     var aux2 :string;
     aux2 = auxiliar.substr(2,3);
     compara = compara + auxiliar.substr(2,3);
-    console.log("fecha actual de tipo cadena" + compara);
     anio = parseInt(aux2);
-    console.log("año actual en tipo numerico" + anio);
     //conseguimos fecha tipo "0000"
     var aux: string;
     aux = this.formulario.controls['fecha_expiracion'].value;
     console.log(aux);
     //obtenemos el año y lo parseamos a entero
     var subanio = aux.substr(2,3);
-    console.log("año de entrada de tipo cadena " + subanio);
     var suba = parseInt(subanio);
-    console.log("año de entrada tipo numerico" +suba);
     let caracter = aux.charAt(0);
     var caracter2: number;
     caracter2 = parseInt(caracter);
     if(caracter2 == 0){
       var submes: string;
       submes = aux.substr(1,1);
-      console.log("mes de entrada tipo cadena " + submes);
       var submes2 = parseInt(submes);
-      console.log("mes de entrada tipo numerico " + submes);
-      console.log(typeof submes2);
     }else{
       submes = aux.substr(0,2);
-      console.log("mes de entrada tipo cadena " + submes);
       var submes2 = parseInt(submes);
-      console.log("mes de entrada tipo numerico " + submes);
-      console.log(typeof submes2);
     }
     //primer caso el año de ingreso es mayor al actual
     if(suba > anio){
       console.log("devuelve 0");
       return 0;
-    }else {//if(suba < anio){ //segundo caso, el año de ingreso es menor al actual
-      console.log("devuelve 1");
-      return -1;
-    /*else if(suba == anio){//tercer caso, el año de ingreso es igual al actual
+    }else if(suba == anio){//tercer caso, el año de ingreso es igual al actual
       if(submes2 < mes){//el mes es menor al actual
         return -1;
       }else{//el mes es mayor al actual
         return 0;
-      }*/
+      }
+    }else{//if(suba < anio){ //segundo caso, el año de ingreso es menor al actual
+      console.log("devuelve 1");
+      return -1;
     }
   }
 
@@ -127,6 +115,7 @@ export class ProductPaymentComponent implements OnInit {
   get f() {
     return this.formulario.controls;
   }
+
   diHola(){
     console.log("hola");
   }

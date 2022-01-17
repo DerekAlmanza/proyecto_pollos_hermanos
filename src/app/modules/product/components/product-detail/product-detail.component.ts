@@ -10,6 +10,8 @@ import { CategoryService } from '../../_service/category.service';
 
 import { CroppedEvent } from 'ngx-photo-editor';
 import Swal from 'sweetalert2';
+import { CartService } from '../../_service/cart.service';
+import { CustomerData } from 'src/app/shared/customer-data';
 
 declare var $:any;
 
@@ -50,10 +52,19 @@ export class ProductDetailComponent implements OnInit {
     id_category: ['', Validators.required]
   })
 
+  // Formulario para agregar al carrito
+  formularioCart = this.formBuilder.group({
+    id_product: [''],
+    product: [''],
+    quantity: ['', Validators.required],
+    rfc: ['']
+  })
+
   constructor(
     private product_service: ProductService,
     private product_image_service: ProductImageService,
     private category_service: CategoryService,
+    private cartService: CartService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router
@@ -156,6 +167,46 @@ export class ProductDetailComponent implements OnInit {
     );
   }
 
+  /** */
+  onSubmitCart() {
+    this.formularioCart.controls['id_product'].setValue(this.product.id_product);
+    this.formularioCart.controls['product'].setValue(this.product);
+    this.formularioCart.controls['rfc'].setValue(CustomerData.RFC);
+
+    this.submitted = true;
+
+    Swal.fire({
+      title: '¿Seguro que deseas agregar este producto al carrito?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, agregalo',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.cartService.addToCart(this.formularioCart.value).subscribe(
+          () => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Se ha añadido el producto de forma exitosa!',
+              showConfirmButton: false,
+              timer: 2000
+            });
+            this.submitted = false;
+            this.formularioCart.controls['quantity'].setValue(1);
+          },
+          error => {
+            console.error(error);
+            this.failedAlert();
+            this.submitted = false;
+          }
+        )
+      }
+    });
+  }
+
   /**
    * Actualiza producto
    * @param product 
@@ -200,7 +251,7 @@ export class ProductDetailComponent implements OnInit {
               title: 'Eliminación exitosa!',
               showConfirmButton: false,
               timer: 2000
-            }) 
+            })
           },
           err => {
             console.log(err);
@@ -273,4 +324,7 @@ export class ProductDetailComponent implements OnInit {
     this.image.image = this.base64;
   }
 
+  range() {
+    return Array(this.product.stock).fill(0).map((_, i) => i + 1)
+  }
 }

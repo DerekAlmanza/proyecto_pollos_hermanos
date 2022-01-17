@@ -1,0 +1,43 @@
+<section>
+
+    <div class="container">
+
+        
+        <select class="select-personalizado" (change)="showCategoryProducts($event)">
+            <option selected disabled>Todas las categorías &#x25BC;</option>
+            <option *ngFor="let category of categories" [value]="category.id_category">{{category.category}}</option>
+        </select>
+        
+            
+        <div *ngFor="let product of products" class="tarjeta">
+
+            <!-- Product image. Queda pendiente de desarrollo-->
+            <!-- <div *ngFor="let img of images" class="card text-center bg-dark card-img" style="width: 18rem;">
+                <img class="card-img-top" src="{{img.image}}" alt="Card image cap">
+            </div> -->
+
+            <!-- Product details-->
+            <div class="card-body p-4">
+                <div class="text-center text-dark">
+                    <!-- Product name-->
+                    <h4 class="fw-bolder">{{product.product}}</h4>
+                    <!-- Product price-->
+                    <h5>${{ product.price }}</h5>
+                </div>
+            </div>
+
+            <!-- Product actions-->
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center">
+                    <button (click)="productDetail(product.gtin)" type="button" class="btn btn-info botones">
+                        Ver detalles&nbsp;
+                        <i class="far fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+</section>
