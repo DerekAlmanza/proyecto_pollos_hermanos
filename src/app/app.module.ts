@@ -11,6 +11,7 @@ import { ExchangeRateModule } from "./modules/exchange-rate/exchange-rate.module
 import { CustomerModule } from "./modules/customer/customer.module";
 import { HomeModule } from './modules/home/home.module';
 import { ProductModule } from './modules/product/product.module';
+import { InvoiceModule } from './modules/invoice/invoice.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ProductModule } from './modules/product/product.module';
     ExchangeRateModule,
     CustomerModule,
     HomeModule,
-    ProductModule
+    ProductModule,
+    InvoiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]

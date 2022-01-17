@@ -28,6 +28,7 @@ import { CartComponent } from './components/cart/cart.component';
     CategoryComponent,
     ProductComponent,
     ProductDetailComponent,
+    ProductPaymentComponent,
     CartComponent
   ]
 })
