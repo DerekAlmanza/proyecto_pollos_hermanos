@@ -30,7 +30,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal para el detalle de la factura -->
 <div class="modal fade" id="invoiceModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered text-center" role="document">
         <div class="modal-content modal-personalizado">
@@ -44,7 +44,7 @@
                 </button>
             </div>
             <!-- Body -->
-            <div class="modal-body">
+            <div *ngFor="let item of items" class="modal-body">
                 <table class ="table table-dark" style="width:100%;">
                     <tbody class="text-white">
                         <tr>

@@ -35,6 +35,7 @@ export class InvoiceComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
 
+  /** Método que nos lista las facturas del cliente **/
   getInvoice(){
     this.invoice_service.getCart().subscribe(
       res => this.invoices = res,
@@ -42,10 +43,12 @@ export class InvoiceComponent implements OnInit {
     )
   }
 
+  /** Método que llama a getInvoice() **/
   ngOnInit(): void {
     this.getInvoice();
   }
 
+  /** Método que nos devuelve el detalle de la factura seleccionada **/
   invoiceDetail(id_invoice:number){
     console.log("aqui redirigimos al detalle de la factura");
     this.invoice_service.getItems(id_invoice).subscribe(
@@ -57,7 +60,7 @@ export class InvoiceComponent implements OnInit {
       err => console.log(err)
     )
   }
-
+   /** Método para cerrar el modal cuando mostramos el detalle de una factura **/
   closeModal(){
     $('#invoiceModal').modal('hide');
     this.submitted = false;
