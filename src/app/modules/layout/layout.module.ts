@@ -12,6 +12,7 @@ import { CustomerDetailComponent } from './../customer/components/customer-detai
 import { CustomerComponent } from './../customer/components/customer/customer.component';
 import { ProductDetailComponent } from './../product/components/product-detail/product-detail.component';
 import { ProductComponent } from './../product/components/product/product.component';
+import { ProductPaymentComponent } from '../product/components/product-payment/product-payment.component';
 import { CartComponent } from '../product/components/cart/cart.component';
 import { ShowCategoryProductsComponent } from './../home/components/show-category-products/show-category-products.component';
 
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'customer-detail/:rfc', component: CustomerDetailComponent},
   {path: 'product', component: ProductComponent},
   {path: 'product-detail/:gtin', component: ProductDetailComponent},
+  {path: 'product-payment', component: ProductPaymentComponent},
   {path: 'cart', component: CartComponent},
   {path: 'category-products/:id_category', component: ShowCategoryProductsComponent}
 ];
