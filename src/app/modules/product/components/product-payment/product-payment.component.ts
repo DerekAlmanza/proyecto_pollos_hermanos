@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CustomerData } from 'src/app/shared/customer-data';
+import { CartService } from '../../_service/cart.service';
+import { Cart } from '../../_model/cart';
+import { InvoiceService } from 'src/app/modules/invoice/_service/invoice.service';
 
 import Swal from 'sweetalert2';
 
@@ -11,6 +15,9 @@ import Swal from 'sweetalert2';
 })
 export class ProductPaymentComponent implements OnInit {
 
+  rfc = CustomerData.RFC;
+  total = 0;
+  cart: Cart[] = [];
   formulario = this.formBuilder.group({
     name: ['', Validators.required],
     card_number: ['', Validators.required],
@@ -18,6 +25,21 @@ export class ProductPaymentComponent implements OnInit {
     cvv_cvc: ['', Validators.required]
   })
   submitted = false;
+
+  /** Método que obitene el total de pago **/
+  obtenTotal(){
+    this.cartService.getCart().subscribe(
+      (res) => {
+        console.log(res);
+        this.cart = res;
+        for(let i = 0; i<= this.cart.length; i++){
+          this.total += this.cart[i].quantity * this.cart[i].product.price;
+          console.log(this.total);
+        }
+      },
+      (error) => console.log(error)
+    )
+  }
 
   /**Método que verifica que la fecha ingresada no sea menor a la actual **/
   estableceFecha(){
@@ -77,6 +99,13 @@ export class ProductPaymentComponent implements OnInit {
   onSubmit(){
     this.submitted = true;
     if (this.estableceFecha() == 0){
+      console.log(this.rfc);
+      this.invoiceService.purchase(this.rfc).subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (error) => console.log(error)
+      );
       this.successAlert();
     }else{
       console.log("error");
@@ -122,11 +151,14 @@ export class ProductPaymentComponent implements OnInit {
 
   constructor(
     private router: Router, 
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private cartService: CartService,
+    private invoiceService: InvoiceService
     ) { }
 
   ngOnInit(): void {
     this.diHola();
+    this.obtenTotal();
   }
 
 }

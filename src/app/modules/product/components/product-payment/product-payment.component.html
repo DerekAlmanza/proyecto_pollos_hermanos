@@ -43,11 +43,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- footer falso -->
-                <div class=" text-sm-center justify-content-center pt-4 pb-4"> <p class="text text-center">Cliente: "RFC"</p>
-                    <h5 class="mb-5">12345678</h5> <p class="text">Monto Total</p>
+                <!-- footer -->
+                <div class=" text-sm-center justify-content-center pt-4 pb-4"> <p class="text text-center">Cliente:</p>
+                    <h5 class="mb-5">{{rfc}}</h5> <p class="text">Monto Total</p>
                     <div class=" px-3 justify-content-sm-center">
-                        <h2 class=""><span class="text font-weight-bold mr-2">$</span><span class="text-danger">59.49</span></h2>
+                        <h2 class=""><span class="text font-weight-bold mr-2">$</span><span class="text-danger">{{total}}</span><span>MNX</span></h2>
                     </div> <button [disabled]="submitted" type="submit" class="btn btn-red text-center mt-4">PAGAR</button>
                 </div>
             </form>

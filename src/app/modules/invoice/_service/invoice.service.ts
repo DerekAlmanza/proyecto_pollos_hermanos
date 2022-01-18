@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApisURI } from 'src/app/shared/apis-uri';
-import { customerRFC } from 'src/app/shared/customer-rfc';
+import { CustomerData } from 'src/app/shared/customer-data'; 
 import { Invoice } from '../_model/invoice';
 import { Item } from '../_model/item';
 
@@ -11,7 +11,7 @@ import { Item } from '../_model/item';
 export class InvoiceService {
 
   private ApiURI = ApisURI.dwf20221apiURI;
-  private rfc = customerRFC.RFC;
+  private rfc = CustomerData.RFC;
   private resource = "/invoice";
 
   constructor(private httpClient: HttpClient
