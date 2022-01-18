@@ -185,6 +185,8 @@ export class ProductDetailComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
+        console.log(this.formularioCart.value);
+        
         this.cartService.addToCart(this.formularioCart.value).subscribe(
           () => {
             Swal.fire({

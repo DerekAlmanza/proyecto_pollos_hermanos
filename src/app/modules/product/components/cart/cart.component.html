@@ -1,3 +1,11 @@
+<div class="contenedor">
+  <div class="botones-practica">
+      <a routerLink="/">
+          <span>VOLVER AL INICIO</span>
+      </a>
+  </div>
+</div>
+
 <div class="container-fluid tarjeta">
   <div *ngIf="cart.length > 0; else emptyCart" class="card text-center card text-white bg-dark">
     <!-- Header -->
@@ -22,7 +30,7 @@
                 <button
                   (click)="removeFromCart(product.id_cart)"
                   type="button"
-                  class="btn btn-danger botones"
+                  class="btn btn-danger boton"
                 >
                   Eliminar&nbsp;
                   <i class="fas fa-trash"></i>
@@ -33,7 +41,16 @@
         </table>
       </div>
     </div>
+    <div class="contenedor">
+      <div class="botones-practica">
+          <a routerLink="/product-payment">
+              <span>COMPRAR</span>
+          </a>
+      </div>
+    </div>
   </div>
+
+  
 
   <ng-template #emptyCart>
     <div class="text-center">

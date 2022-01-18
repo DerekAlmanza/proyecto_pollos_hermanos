@@ -1,19 +1,90 @@
 .tarjeta {
-    margin-top: 30px;
-    margin-bottom: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .formulario {
-    margin-top: 5px;
-    margin-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 form input {
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
 .footer {
-    margin: 0;
+  margin: 0;
+}
+
+/* ---------- Boton Volver al inicio --------- */
+
+.contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.botones-practica {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.botones-practica a {
+  display: inline-block;
+  position: relative;
+  width: 15rem;
+  height: 3.5rem;
+  margin: 25px;
+  text-decoration: none;
+  background-color: #fff;
+}
+
+.botones-practica a::before,
+.botones-practica a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #f00;
+  transition: 0.5s;
+}
+
+.botones-practica a:nth-child(1):before,
+.botones-practica a:nth-child(1):after {
+  background: linear-gradient(45deg, #00ccff, #0d0a38, #0d0a38, #d400d4);
+}
+
+.botones-practica a:nth-child(2):before,
+.botones-practica a:nth-child(2):after {
+  background: linear-gradient(45deg, #ff075b, #0d0a38, #0d0a38, #1aff22);
+}
+
+.botones-practica a:hover::before {
+  inset: -3px;
+}
+
+.botones-practica a:hover::after {
+  inset: -9px;
+  filter: blur(10px);
+}
+
+.botones-practica a span {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0d0a38;
+  z-index: 1;
+  font-size: 1.3em;
+  border: 2px solid #090630;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fff;
 }

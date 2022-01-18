@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import {NgxPhotoEditorModule} from "ngx-photo-editor";
@@ -18,7 +19,8 @@ import { CustomerDetailComponent } from './components/customer-detail/customer-d
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPhotoEditorModule
+    NgxPhotoEditorModule,
+    RouterModule
   ],
   exports: [
     RegionComponent,
